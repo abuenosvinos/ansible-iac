@@ -1,0 +1,19 @@
+---
+- name: "File Operations"
+  hosts: webservers
+  tasks:
+    - name: "Make sure the file exist with touch command"
+      file:
+        path: /tmp/testAnsibleFile
+        state: touch
+    - name: "Use echo command to add data to the file"
+      shell: "echo 'DATA DATA DATA DATA' >> /tmp/testAnsibleFile"
+    - name: "Create a directory to host the file in"
+      file:
+        path: /tmp/testAnsibleDir
+        state: directory
+    - name: "Copy the file into our new directory"
+      copy:
+        remote_src: yes
+        src: /tmp/testAnsibleFile
+        dest: /tmp/testAnsibleDir/copyOfAnsibleTestFile
