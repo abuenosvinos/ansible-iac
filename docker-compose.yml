@@ -9,31 +9,31 @@ services:
     links:
       - server1
       - server2
-    networks:
-      mynet:
-        ipv4_address: 172.130.0.100
+#    networks:
+#      mynet:
+#        ipv4_address: 172.130.0.100
 
   server1:
     build: ./server/
     container_name: aiac_server1
     stdin_open: true
     tty: true
-    networks:
-      mynet:
-        ipv4_address: 172.130.0.200
+#    networks:
+#      mynet:
+#        ipv4_address: 172.130.0.200
 
   server2:
     build: ./server/
     container_name: aiac_server2
     stdin_open: true
     tty: true
-    networks:
-      mynet:
-        ipv4_address: 172.130.0.201
+#    networks:
+#      mynet:
+#        ipv4_address: 172.130.0.201
 
-networks:
-  mynet:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.130.0.0/24
+#networks:
+#  mynet:
+#    driver: bridge
+#    ipam:
+#      config:
+#        - subnet: 172.130.0.0/24
