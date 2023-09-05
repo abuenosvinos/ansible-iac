@@ -3,7 +3,7 @@ version: '3.3'
 services:
   manager:
     build: ./manager/
-    container_name: manager
+    container_name: aiac_manager
     stdin_open: true # docker run -i
     tty: true        # docker run -t
     links:
@@ -11,29 +11,29 @@ services:
       - server2
     networks:
       mynet:
-        ipv4_address: 172.26.0.100
+        ipv4_address: 172.130.0.100
 
   server1:
     build: ./server/
-    container_name: server1
+    container_name: aiac_server1
     stdin_open: true
     tty: true
     networks:
       mynet:
-        ipv4_address: 172.26.0.200
+        ipv4_address: 172.130.0.200
 
   server2:
     build: ./server/
-    container_name: server2
+    container_name: aiac_server2
     stdin_open: true
     tty: true
     networks:
       mynet:
-        ipv4_address: 172.26.0.201
+        ipv4_address: 172.130.0.201
 
 networks:
   mynet:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.26.0.0/24
+        - subnet: 172.130.0.0/24
