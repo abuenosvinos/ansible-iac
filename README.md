@@ -22,8 +22,21 @@ docker-compose up
 
 Connection test between instances
 ```
-docker exec -it manager /bin/bash
+docker exec -it aiac_manager /bin/bash
 ansible-playbook -i /ansible/playbooks/test_files/hosts /ansible/playbooks/test_files/main.yml
+```
+
+Check the servers
+```
+docker exec -it aiac_server1 /bin/bash
+cat /tmp/testAnsibleFile
+cat /tmp/testAnsibleDir/copyOfAnsibleTestFile
+```
+
+```
+docker exec -it aiac_server2 /bin/bash
+cat /tmp/testAnsibleFile
+cat /tmp/testAnsibleDir/copyOfAnsibleTestFile
 ```
 
 TODO
