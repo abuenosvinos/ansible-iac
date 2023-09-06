@@ -1,0 +1,22 @@
+-
+  name: this is a  simple html project
+  hosts: webservers
+  tasks:
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: latest
+
+#    - name: Start nginx
+#      service:
+#        name: nginx
+#        state: started
+#        enabled: yes
+
+    - name: Start nginx
+      command: service nginx start # We use a command because the service isn't working
+
+    - name: Deploy webpage
+      copy:
+        src: /ansible/www/index.html
+        dest: /var/www/html

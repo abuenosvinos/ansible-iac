@@ -51,6 +51,8 @@ ENV PYTHONPATH /ansible/lib
 
 COPY playbook /ansible/playbooks
 
+COPY www /ansible/www
+
 # Sets entry point (same as running ansible-playbook)
 #ENTRYPOINT ["ansible-playbook"]
 # Can also use ["ansible"] if wanting it to be an ad-hoc command version

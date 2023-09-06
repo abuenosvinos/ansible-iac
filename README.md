@@ -17,26 +17,42 @@ Examples of Ansible
 
 Prepare instances
 ```
-docker-compose up 
+docker compose up -d --build
 ```
 
-Connection test between instances
+Check the connections
+```
+docker exec -it aiac_manager /bin/bash
+ansible all -m ping  -i /ansible/playbooks/test_files/hosts # Check
+ansible -i /ansible/playbooks/test_files/hosts webservers -a "apt update" # Another Check. Example of operation to do in every server
+ansible -i /ansible/playbooks/test_files/hosts webservers -a "df -h" # Even to check information
+```
+
+Install a website
+```
+docker exec -it aiac_manager /bin/bash
+ansible-playbook -i /ansible/playbooks/test_files/hosts /ansible/playbooks/test_files/webpage.yml
+curl http://server1
+curl http://server2
+```
+
+Operations in servers
 ```
 docker exec -it aiac_manager /bin/bash
 ansible-playbook -i /ansible/playbooks/test_files/hosts /ansible/playbooks/test_files/main.yml
-```
 
-Check the servers
-```
 docker exec -it aiac_server1 /bin/bash
 cat /tmp/testAnsibleFile
 cat /tmp/testAnsibleDir/copyOfAnsibleTestFile
-```
 
-```
 docker exec -it aiac_server2 /bin/bash
 cat /tmp/testAnsibleFile
 cat /tmp/testAnsibleDir/copyOfAnsibleTestFile
+```
+
+Stop instances
+```
+docker compose down
 ```
 
 TODO
